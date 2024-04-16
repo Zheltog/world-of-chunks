@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://kdlda4v00uqb"]
+
+[ext_resource type="Script" path="res://Scripts/Field.gd" id="1_g2pcm"]
+[ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_t2hj8"]
+
+[node name="Base" type="CanvasLayer"]
+script = ExtResource("1_t2hj8")
+cells_num_hor = 15
+cells_num_ver = 5
+
+[node name="BaseRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 128.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Field" type="Node2D" parent="."]
+script = ExtResource("1_g2pcm")

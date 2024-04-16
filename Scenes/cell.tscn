@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://o2dj2eu1bkjd"]
+
+[ext_resource type="Script" path="res://Scripts/Cell.gd" id="1_p1jf5"]
+[ext_resource type="Texture2D" uid="uid://pn85u7rbu58y" path="res://Sprites/cell.png" id="2_4gicn"]
+
+[node name="Cell" type="Node2D"]
+script = ExtResource("1_p1jf5")
+
+[node name="Button" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0, 0, 1, 1)
+texture = ExtResource("2_4gicn")

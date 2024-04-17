@@ -28,8 +28,16 @@ func init(
 	var screen_width = get_viewport_rect().size.x
 	var screen_height = get_viewport_rect().size.y
 	_center = Vector2(screen_width / 2, screen_height / 2)
-	_cell_size = screen_width / (cells_num_hor + 2)
+	_cell_size = min(screen_width / (_cells_num_hor + 2), screen_height / (_cells_num_ver + 2))
 	_init_cells()
+
+
+func light_up_cell(x: int, y: int):
+	_cells[y * _cells_num_hor + x].light_up()
+
+
+func shoot_cell(x: int, y: int):
+	_cells[y * _cells_num_hor + x].shoot()
 
 
 func _init_cells():
@@ -38,20 +46,22 @@ func _init_cells():
 	
 	_cells.clear()
 	_cells.resize(_cells_num_hor * _cells_num_ver)
+	
 	var left_top_x = _center.x - (_cells_num_hor * _cell_size / 2)
 	var left_top_y = _center.y - (_cells_num_ver * _cell_size / 2)
 	var init_pos_x = left_top_x + _cell_size / 2
 	var init_pos_y = left_top_y + _cell_size / 2
 	
-	for x in range(_cells_num_hor):
-		for y in range(_cells_num_ver):
+	for y in range(_cells_num_ver):
+		for x in range(_cells_num_hor):
 			var cell: Cell = _cell_scene.instantiate()
 			add_child(cell)
 			cell.set_size(_cell_size, _cell_size)
 			cell.set_coordinates(x, y)
 			cell.name = str("Cell[", x, ",", y, "]")
 			cell.position = Vector2(init_pos_x + x * _cell_size, init_pos_y + y * _cell_size)
-			_cells[x * _cells_num_hor + y] = cell
+			print(cell.name)
+			_cells[y * _cells_num_hor + x] = cell
 
 
 func _destroy_old_cells():

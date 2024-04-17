@@ -6,8 +6,7 @@ extends Node2D
 var _sprite: Sprite2D
 var _initial_size_x: float
 var _initial_size_y: float
-var _x: int
-var _y: int
+var _coordinates: Coordinates = Coordinates.new(0, 0)
 
 
 func _ready():
@@ -21,8 +20,7 @@ func _process(delta):
 
 
 func set_coordinates(x: int, y: int):
-	_x = x
-	_y = y
+	_coordinates.reset(x, y)
 
 
 func set_size(size_x: float, size_y: float):
@@ -30,12 +28,16 @@ func set_size(size_x: float, size_y: float):
 
 
 func light_up():
-	_sprite.self_modulate = Color(1, 1, 1, 1)
+	recolor(Color(1, 1, 1, 1))
 
 
 func shoot():
-	_sprite.self_modulate = Color(0, 0, 0, 1)
+	recolor(Color(0, 0, 0, 1))
+
+
+func recolor(color: Color):
+	_sprite.self_modulate = color
 
 
 func _on_button_button_down():
-	EventBus.cell_clicked.emit(_x, _y)
+	EventBus.cell_clicked.emit(_coordinates)

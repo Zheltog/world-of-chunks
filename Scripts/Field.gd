@@ -32,12 +32,16 @@ func init(
 	_init_cells()
 
 
-func light_up_cell(x: int, y: int):
-	_cells[y * _cells_num_hor + x].light_up()
+func light_up_cell(coordinates: Coordinates):
+	_cells[coordinates.y * _cells_num_hor + coordinates.x].light_up()
 
 
-func shoot_cell(x: int, y: int):
-	_cells[y * _cells_num_hor + x].shoot()
+func shoot_cell(coordinates: Coordinates):
+	_cells[coordinates.y * _cells_num_hor + coordinates.x].shoot()
+
+
+func recolor_cell(coordinates: Coordinates, color: Color):
+	_cells[coordinates.y * _cells_num_hor + coordinates.x].recolor(color)
 
 
 func _init_cells():

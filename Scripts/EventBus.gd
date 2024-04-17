@@ -1,4 +1,5 @@
 extends Node
 
 
-signal cell_clicked(x: int, y: int)
+signal cell_clicked(coordinates: Coordinates)
+signal cell_recolored(coordinates: Coordinates, color: Color)

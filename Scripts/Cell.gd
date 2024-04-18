@@ -7,6 +7,7 @@ var _sprite: Sprite2D
 var _initial_size_x: float
 var _initial_size_y: float
 var _coordinates: Coordinates = Coordinates.new(0, 0)
+var _occupant: TankPart
 
 
 func _ready():
@@ -32,11 +33,18 @@ func light_up():
 
 
 func shoot():
-	recolor(Color(0, 0, 0, 1))
+	if _occupant == null:
+		EventBus.new_message.emit("Missed!")
+	else:
+		_occupant.try_shoot()
 
 
 func recolor(color: Color):
 	_sprite.self_modulate = color
+
+
+func occupy(occupant: TankPart):
+	_occupant = occupant
 
 
 func _on_button_button_down():

@@ -30,4 +30,18 @@ offset_right = 22.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="Label" type="Label" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -400.0
+offset_top = 23.0
+offset_right = 400.0
+offset_bottom = 84.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 42
+text = "Sample text"
+horizontal_alignment = 1
+
 [connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]

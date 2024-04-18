@@ -44,6 +44,10 @@ func recolor_cell(coordinates: Coordinates, color: Color):
 	_cells[coordinates.y * _cells_num_hor + coordinates.x].recolor(color)
 
 
+func occupy_cell(coordinates: Coordinates, occupant: TankPart):
+	_cells[coordinates.y * _cells_num_hor + coordinates.x].occupy(occupant)
+
+
 func _init_cells():
 	if _cells.size() > 0:
 		_destroy_old_cells()
@@ -64,7 +68,6 @@ func _init_cells():
 			cell.set_coordinates(x, y)
 			cell.name = str("Cell[", x, ",", y, "]")
 			cell.position = Vector2(init_pos_x + x * _cell_size, init_pos_y + y * _cell_size)
-			print(cell.name)
 			_cells[y * _cells_num_hor + x] = cell
 
 

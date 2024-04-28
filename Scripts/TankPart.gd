@@ -6,7 +6,6 @@ extends Node
 var parent: Tank
 var relative_coordinates: Array
 var color: Color
-var black: Color = Color.BLACK
 var hp: int
 var hit_probability: int
 var part_name: String
@@ -20,18 +19,19 @@ func _process(delta):
 	pass
 
 
-func reset():
-	for coordinates in relative_coordinates:
-		var actual = _calc_actual_coordinates(coordinates)
-		EventBus.cell_recolored.emit(actual, black)
-		EventBus.cell_occupied.emit(actual, null)
+func release_cells():
+	_process_coordinates(Color.BLACK, null)
 
 
-func update():
+func ocuppy_cells():
+	_process_coordinates(color, self)
+
+
+func _process_coordinates(_color: Color, _occupant: TankPart):
 	for coordinates in relative_coordinates:
 		var actual = _calc_actual_coordinates(coordinates)
-		EventBus.cell_recolored.emit(actual, color)
-		EventBus.cell_occupied.emit(actual, self)
+		EventBus.cell_recolored.emit(actual, _color)
+		EventBus.cell_occupied.emit(actual, _occupant)
 
 
 func try_shoot():
@@ -46,6 +46,6 @@ func try_shoot():
 
 func _calc_actual_coordinates(relative: Coordinates) -> Coordinates:
 	var actual: Coordinates = Coordinates.new(0, 0)
-	actual.x = parent.coordinates.x + relative.x
-	actual.y = parent.coordinates.y + relative.y
+	actual.x = parent.base_coordinates.x + relative.x
+	actual.y = parent.base_coordinates.y + relative.y
 	return actual

@@ -19,10 +19,7 @@ func _process(delta):
 	pass
 
 
-func init(
-	cells_num_hor: int,
-	cells_num_ver: int
-):
+func init(cells_num_hor: int, cells_num_ver: int):
 	_cells_num_hor = cells_num_hor
 	_cells_num_ver = cells_num_ver
 	var screen_width = get_viewport_rect().size.x
@@ -32,8 +29,15 @@ func init(
 	_init_cells()
 
 
-func light_up_cell(coordinates: Coordinates):
-	_cells[coordinates.y * _cells_num_hor + coordinates.x].light_up()
+func light_up_cells(center: Coordinates, light_up_radius: int):
+	for delta_x in range(-light_up_radius, light_up_radius + 1):
+		for delta_y in range(-light_up_radius, light_up_radius + 1):
+			var coordinates = Coordinates.new(center.x + delta_x, center.y + delta_y)
+			if coordinates.x < 0 or coordinates.x >= _cells_num_hor:
+				continue
+			if coordinates.y < 0 or coordinates.y >= _cells_num_ver:
+				continue
+			_cells[coordinates.y * _cells_num_hor + coordinates.x].light_up()
 
 
 func shoot_cell(coordinates: Coordinates):
@@ -69,6 +73,11 @@ func _init_cells():
 			cell.name = str("Cell[", x, ",", y, "]")
 			cell.position = Vector2(init_pos_x + x * _cell_size, init_pos_y + y * _cell_size)
 			_cells[y * _cells_num_hor + x] = cell
+
+
+func _dim_all_cells():
+	for cell in _cells:
+		cell.dim()
 
 
 func _destroy_old_cells():

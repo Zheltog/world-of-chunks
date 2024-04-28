@@ -5,6 +5,7 @@ extends CanvasLayer
 
 @export var cells_num_hor: int
 @export var cells_num_ver: int
+@export var light_up_radius: int = 1
 
 
 var _field: Field
@@ -21,6 +22,7 @@ func _ready():
 	EventBus.cell_recolored.connect(_on_cell_recolored)
 	EventBus.cell_occupied.connect(_on_cell_occupied)
 	EventBus.new_message.connect(_print_new_message)
+	EventBus.tank_stopped.connect(_on_tank_stopped)
 	
 	_field = get_node("Field")
 	_field.init(cells_num_hor, cells_num_ver)
@@ -37,11 +39,13 @@ func _process(delta):
 
 
 func _on_cell_clicked(coordinates: Coordinates):
+	_field._dim_all_cells()
 	if _cell_click_type == CellClickType.ROCKET:
-		_try_light_up_cell(coordinates)
+		_try_move_tank()
+		_try_light_up_cells(coordinates)
 	elif _cell_click_type == CellClickType.GUN:
 		_try_shoot_cell(coordinates)
-	_try_move_tank()
+		_try_move_tank()
 
 
 func _on_cell_recolored(coordinates: Coordinates, color: Color):
@@ -52,8 +56,12 @@ func _on_cell_occupied(coordinates: Coordinates, occupant: TankPart):
 	_field.occupy_cell(coordinates, occupant)
 
 
-func _try_light_up_cell(coordinates: Coordinates):
-	_field.light_up_cell(coordinates)
+func _on_tank_stopped():
+	pass
+
+
+func _try_light_up_cells(center: Coordinates):
+	_field.light_up_cells(center, light_up_radius)
 
 
 func _try_shoot_cell(coordinates: Coordinates):

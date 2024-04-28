@@ -14,7 +14,7 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-self_modulate = Color(0, 0, 1, 1)
+self_modulate = Color(0, 0, 0, 1)
 texture = ExtResource("2_4gicn")
 
 [connection signal="button_down" from="Button" to="." method="_on_button_button_down"]

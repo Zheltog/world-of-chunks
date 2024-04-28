@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://kdlda4v00uqb"]
+[gd_scene load_steps=7 format=3 uid="uid://kdlda4v00uqb"]
 
 [ext_resource type="Script" path="res://Scripts/Field.gd" id="1_g2pcm"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_t2hj8"]
+[ext_resource type="Texture2D" uid="uid://b7s8862fsb2a1" path="res://Sprites/close.png" id="3_1juwg"]
+[ext_resource type="Texture2D" uid="uid://qiwtdbxgdtp1" path="res://Sprites/eyes.png" id="3_pmm6o"]
+[ext_resource type="Texture2D" uid="uid://bytct43d0spi1" path="res://Sprites/new.png" id="3_w62oi"]
+[ext_resource type="Texture2D" uid="uid://bwmu551bbtvy8" path="res://Sprites/fist.png" id="4_h4lyl"]
 
 [node name="Base" type="CanvasLayer"]
 script = ExtResource("1_t2hj8")
@@ -18,18 +22,6 @@ grow_vertical = 2
 [node name="Field" type="Node2D" parent="."]
 script = ExtResource("1_g2pcm")
 
-[node name="CheckButton" type="CheckButton" parent="."]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -22.0
-offset_top = -24.0
-offset_right = 22.0
-grow_horizontal = 2
-grow_vertical = 0
-
 [node name="Label" type="Label" parent="."]
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 5
@@ -44,4 +36,84 @@ theme_override_font_sizes/font_size = 42
 text = "Sample text"
 horizontal_alignment = 1
 
-[connection signal="toggled" from="CheckButton" to="." method="_on_check_button_toggled"]
+[node name="NewButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -80.0
+offset_right = 36.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_w62oi")
+texture_pressed = ExtResource("3_w62oi")
+texture_hover = ExtResource("3_w62oi")
+texture_disabled = ExtResource("3_w62oi")
+texture_focused = ExtResource("3_w62oi")
+stretch_mode = 0
+
+[node name="RocketButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -76.0
+offset_top = -80.0
+offset_right = -4.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_pmm6o")
+texture_pressed = ExtResource("3_pmm6o")
+texture_hover = ExtResource("3_pmm6o")
+texture_disabled = ExtResource("3_pmm6o")
+texture_focused = ExtResource("3_pmm6o")
+stretch_mode = 0
+
+[node name="GunButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = -80.0
+offset_right = 76.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("4_h4lyl")
+texture_pressed = ExtResource("4_h4lyl")
+texture_hover = ExtResource("4_h4lyl")
+texture_disabled = ExtResource("4_h4lyl")
+texture_focused = ExtResource("4_h4lyl")
+stretch_mode = 0
+
+[node name="CloseButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -80.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = 80.0
+grow_horizontal = 0
+texture_normal = ExtResource("3_1juwg")
+texture_pressed = ExtResource("3_1juwg")
+texture_hover = ExtResource("3_1juwg")
+texture_disabled = ExtResource("3_1juwg")
+texture_focused = ExtResource("3_1juwg")
+stretch_mode = 0
+
+[connection signal="pressed" from="NewButton" to="." method="_on_new_button_pressed"]
+[connection signal="pressed" from="RocketButton" to="." method="_on_rocket_button_pressed"]
+[connection signal="pressed" from="GunButton" to="." method="_on_gun_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

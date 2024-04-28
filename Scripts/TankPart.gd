@@ -20,7 +20,7 @@ func _process(delta):
 
 
 func release_cells():
-	_process_coordinates(Color.BLACK, null)
+	_process_coordinates(Color.MIDNIGHT_BLUE, null)
 
 
 func ocuppy_cells():
@@ -41,7 +41,7 @@ func try_shoot():
 		hp -= 1
 		EventBus.new_message.emit(str("Got it! Remaining ", hp, " of ", part_name))
 	else:
-		EventBus.new_message.emit("Missed!!!")
+		EventBus.new_message.emit("Missed!")
 
 
 func _calc_actual_coordinates(relative: Coordinates) -> Coordinates:

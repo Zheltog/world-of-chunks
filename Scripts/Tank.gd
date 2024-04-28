@@ -40,10 +40,16 @@ func set_coordinates(x: int, y: int):
 
 
 func _move():
+	EventBus.tank_moved.emit()
+	
 	_wheels.release_cells()
 	_body.release_cells()
 	_tower.release_cells()
+	
 	base_coordinates.move(-1, 0)
+	if base_coordinates.x < 0:
+		EventBus.tank_escaped.emit()
+	
 	_wheels.ocuppy_cells()
 	_body.ocuppy_cells()
 	_tower.ocuppy_cells()

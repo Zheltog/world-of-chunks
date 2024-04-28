@@ -9,7 +9,7 @@ var _initial_size_y: float
 var _coordinates: Coordinates = Coordinates.new(0, 0)
 var _occupant: TankPart
 var _is_lighted: bool = false
-var _current_color: Color = Color.BLACK
+var _current_color: Color = Color.MIDNIGHT_BLUE
 
 
 func _ready():
@@ -32,8 +32,8 @@ func set_size(size_x: float, size_y: float):
 
 func light_up():
 	_is_lighted = true
-	if _current_color == Color.BLACK:
-		_sprite.self_modulate = Color.LIGHT_YELLOW
+	if _current_color == Color.MIDNIGHT_BLUE:
+		_sprite.self_modulate = Color.ROYAL_BLUE
 	else:
 		_sprite.self_modulate = _current_color
 
@@ -41,7 +41,7 @@ func light_up():
 func dim():
 	if _is_lighted:
 		_is_lighted = false
-		_sprite.self_modulate = Color.BLACK
+		_sprite.self_modulate = Color.MIDNIGHT_BLUE
 
 
 func shoot():

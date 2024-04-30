@@ -7,6 +7,13 @@ extends CanvasLayer
 @export var cells_num_ver: int
 @export var light_up_radius: int = 1
 @export var tank_stops_to_win: int = 3
+@export var tank_initial_stop_probability: int = 36
+@export var wheels_stop_probability_modifier: int = 10
+@export var body_stop_probability_modifier: int = 3
+@export var tower_stop_probability_modifier: int = 7
+@export var wheels_hit_probability: int = 50
+@export var body_hit_probability: int = 90
+@export var tower_hit_probability: int = 70
 
 
 var _field: Field
@@ -32,18 +39,26 @@ func _ready():
 	EventBus.tank_stopped.connect(_on_tank_stopped)
 	EventBus.tank_moved.connect(_on_tank_moved)
 	EventBus.tank_escaped.connect(_on_tank_escaped)
+	EventBus.tank_damaged.connect(_on_tank_damaged)
 	
 	_field = get_node("Field")
 	_field.init(cells_num_hor, cells_num_ver)
 	_tank = Tank.new()
 	_tank.set_coordinates(cells_num_hor - 1, cells_num_ver - 1)
-	_tank.stop_probability = 25
+	_tank.stop_probability = tank_initial_stop_probability
+	_tank.wheels_stop_probability_modifier = wheels_stop_probability_modifier
+	_tank.body_stop_probability_modifier = body_stop_probability_modifier
+	_tank.tower_stop_probability_modifier = tower_stop_probability_modifier
+	_tank.wheels_hit_probability = wheels_hit_probability
+	_tank.body_hit_probability = body_hit_probability
+	_tank.tower_hit_probability = tower_hit_probability
+	_tank.init()
 	_label = get_node("Label")
 	
 	_init_buttons()
 	
 	_on_gun_button_pressed()
-	_print_new_message("Let's get it!")
+	_print_new_message("Stop general Stool Backless!")
 
 
 func _init_buttons():
@@ -109,6 +124,12 @@ func _on_tank_moved():
 func _on_tank_escaped():
 	_print_new_message("Tank escaped! You failed!")
 	_on_game_over()
+
+
+func _on_tank_damaged(remaining_hp: int):
+	if remaining_hp <= 0:
+		_print_new_message("Tank is destroyed! Victory!")
+		_on_game_over()
 
 
 func _try_light_up_cells(center: Coordinates):

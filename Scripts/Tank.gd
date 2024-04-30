@@ -9,9 +9,15 @@ var _wheels: TankPart = TankPart.new()
 
 var stop_probability: int
 var base_coordinates: Coordinates = Coordinates.new(0, 0)
+var wheels_stop_probability_modifier: int
+var body_stop_probability_modifier: int
+var tower_stop_probability_modifier: int
+var wheels_hit_probability: int
+var body_hit_probability: int
+var tower_hit_probability: int
 
 
-func _init():
+func init():
 	_init_tower()
 	_init_body()
 	_init_wheels()
@@ -29,7 +35,7 @@ func try_move():
 	var random = randi() % 100
 	var is_stop = random < stop_probability
 	if is_stop:
-		EventBus.new_message.emit("Bruh...")
+		EventBus.new_message.emit(str("Tank stopped (", stop_probability, "%)"))
 		EventBus.tank_stopped.emit()
 	else:
 		_move()
@@ -37,6 +43,12 @@ func try_move():
 
 func set_coordinates(x: int, y: int):
 	base_coordinates.reset(x, y)
+
+
+func on_hit(stop_probability_modifier: int):
+	stop_probability += stop_probability_modifier
+	var remaining_hp = _wheels.hp + _body.hp + _tower.hp
+	EventBus.tank_damaged.emit(remaining_hp)
 
 
 func _move():
@@ -63,8 +75,9 @@ func _init_tower():
 	_tower.relative_coordinates[3] = Coordinates.new(0, -3)
 	_tower.color = Color.YELLOW
 	_tower.parent = self
-	_tower.hp = 5
-	_tower.hit_probability = 50
+	_tower.hp = _tower.relative_coordinates.size()
+	_tower.hit_probability = tower_hit_probability
+	_tower.stop_probability_modifier = tower_stop_probability_modifier
 	_tower.part_name = "tower"
 
 
@@ -74,8 +87,9 @@ func _init_body():
 	_body.relative_coordinates[1] = Coordinates.new(-1, -1)
 	_body.color = Color.GREEN
 	_body.parent = self
-	_body.hp = 6
-	_body.hit_probability = 75
+	_body.hp = _body.relative_coordinates.size()
+	_body.hit_probability = body_hit_probability
+	_body.stop_probability_modifier = body_stop_probability_modifier
 	_body.part_name = "body"
 
 
@@ -86,6 +100,7 @@ func _init_wheels():
 	_wheels.relative_coordinates[2] = Coordinates.new(-2, 0)
 	_wheels.color = Color.RED
 	_wheels.parent = self
-	_wheels.hp = 4
-	_wheels.hit_probability = 25
+	_wheels.hp = _wheels.relative_coordinates.size()
+	_wheels.hit_probability = wheels_hit_probability
+	_wheels.stop_probability_modifier = wheels_stop_probability_modifier
 	_wheels.part_name = "wheels"

@@ -32,10 +32,6 @@ func _ready():
 	EventBus.tank_moved.connect(_on_tank_moved)
 	EventBus.tank_escaped.connect(_on_tank_escaped)
 	
-	_rocket_button = get_node("RocketButton")
-	_gun_button = get_node("GunButton")
-	_new_button = get_node("NewButton")
-	_new_button.hide()
 	_field = get_node("Field")
 	_field.init(cells_num_hor, cells_num_ver)
 	_tank = Tank.new()
@@ -43,8 +39,31 @@ func _ready():
 	_tank.stop_probability = 25
 	_label = get_node("Label")
 	
+	_init_buttons()
+	
 	_on_gun_button_pressed()
 	_print_new_message("Let's get it!")
+
+
+func _init_buttons():
+	var cell_size: int = _field.get_cell_size()
+	var center: Vector2 = _field.get_center()
+	
+	_rocket_button = get_node("RocketButton")
+	_gun_button = get_node("GunButton")
+	_new_button = get_node("NewButton")
+	_new_button.hide()
+	
+	var new_init_size_x = _new_button.texture_normal.get_width()
+	var new_init_size_y = _new_button.texture_normal.get_height()
+	var rocket_init_size_x = _rocket_button.texture_normal.get_width()
+	var rocket_init_size_y = _rocket_button.texture_normal.get_height()
+	var gun_init_size_x = _gun_button.texture_normal.get_width()
+	var gun_init_size_y = _gun_button.texture_normal.get_height()
+	
+	_new_button.scale = Vector2(cell_size / _new_button.size.x, cell_size / _new_button.size.x)
+	_rocket_button.scale = Vector2(cell_size / _rocket_button.size.x, cell_size / _rocket_button.size.y)
+	_gun_button.scale = Vector2(cell_size / _gun_button.size.x, cell_size / _gun_button.size.x)
 
 
 func _process(delta):

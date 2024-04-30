@@ -29,6 +29,14 @@ func init(cells_num_hor: int, cells_num_ver: int):
 	_init_cells()
 
 
+func get_center() -> Vector2:
+	return _center
+
+
+func get_cell_size() -> int:
+	return _cell_size
+
+
 func light_up_cells(center: Coordinates, light_up_radius: int):
 	for delta_x in range(-light_up_radius, light_up_radius + 1):
 		for delta_y in range(-light_up_radius, light_up_radius + 1):

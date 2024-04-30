@@ -46,7 +46,7 @@ func dim():
 
 func shoot():
 	if _occupant == null:
-		EventBus.new_message.emit("Missed!")
+		EventBus.add_message.emit("Missed!")
 	else:
 		_occupant.try_shoot()
 

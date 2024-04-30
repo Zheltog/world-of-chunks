@@ -34,11 +34,7 @@ func _process(delta):
 func try_move():
 	var random = randi() % 100
 	var is_stop = random < stop_probability
-	if is_stop:
-		EventBus.new_message.emit(str("Tank stopped (", stop_probability, "%)"))
-		EventBus.tank_stopped.emit()
-	else:
-		_move()
+	_move(0 if is_stop else -1)
 
 
 func set_coordinates(x: int, y: int):
@@ -51,8 +47,13 @@ func on_hit(stop_probability_modifier: int):
 	EventBus.tank_damaged.emit(remaining_hp)
 
 
-func _move():
-	EventBus.tank_moved.emit()
+func _move(distance: int):
+	if distance == 0:
+		EventBus.add_message.emit(str("Tank stopped (", stop_probability, "%)!"))
+		EventBus.tank_stopped.emit()
+	else:
+		EventBus.add_message.emit(str("Tank moved (", 100 - stop_probability, "%)!"))
+		EventBus.tank_moved.emit()
 	
 	_wheels.release_cells()
 	_body.release_cells()

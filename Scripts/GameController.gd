@@ -6,7 +6,7 @@ extends CanvasLayer
 @export var cells_num_hor: int
 @export var cells_num_ver: int
 @export var light_up_radius: int = 1
-@export var tank_stops_to_win: int = 3
+@export var tank_stops_to_win: int = 5
 @export var tank_initial_stop_probability: int = 36
 @export var wheels_stop_probability_modifier: int = 10
 @export var body_stop_probability_modifier: int = 3
@@ -35,7 +35,7 @@ func _ready():
 	EventBus.cell_clicked.connect(_on_cell_clicked)
 	EventBus.cell_recolored.connect(_on_cell_recolored)
 	EventBus.cell_occupied.connect(_on_cell_occupied)
-	EventBus.new_message.connect(_print_new_message)
+	EventBus.add_message.connect(_add_message)
 	EventBus.tank_stopped.connect(_on_tank_stopped)
 	EventBus.tank_moved.connect(_on_tank_moved)
 	EventBus.tank_escaped.connect(_on_tank_escaped)
@@ -55,13 +55,13 @@ func _ready():
 	_tank.init()
 	_label = get_node("Label")
 	
-	_init_buttons()
+	_init_ui()
 	
 	_on_gun_button_pressed()
-	_print_new_message("Stop general Stool Backless!")
+	_set_message("Soldier Dulov!\nStop Millennium Tank of general Stool Backless!")
 
 
-func _init_buttons():
+func _init_ui():
 	var cell_size: int = _field.get_cell_size()
 	var button_size: int = cell_size * 1.5
 	var center: Vector2 = _field.get_center()
@@ -83,6 +83,9 @@ func _init_buttons():
 	_new_button.position = Vector2(center.x - button_size / 2, screen_sizes.y - button_size - cell_size / 4)
 	_rocket_button.position = Vector2(center.x - button_size - cell_size / 8, screen_sizes.y - button_size - cell_size / 4)
 	_gun_button.position = Vector2(center.x + cell_size / 8, screen_sizes.y - button_size - cell_size / 4)
+	
+	_label.position = Vector2(_label.position.x, cell_size / 4)
+	_label.add_theme_font_size_override("font_size", cell_size / 2)
 
 
 func _process(delta):
@@ -93,10 +96,12 @@ func _on_cell_clicked(coordinates: Coordinates):
 	if _is_game_over:
 		return
 	
+	_reset_message()
 	_field._dim_all_cells()
 	if _cell_click_type == CellClickType.ROCKET:
 		_try_move_tank()
-		_try_light_up_cells(coordinates)
+		if not _is_game_over:
+			_try_light_up_cells(coordinates)
 	elif _cell_click_type == CellClickType.GUN:
 		_try_shoot_cell(coordinates)
 		_try_move_tank()
@@ -113,7 +118,7 @@ func _on_cell_occupied(coordinates: Coordinates, occupant: TankPart):
 func _on_tank_stopped():
 	_current_tank_stops += 1
 	if _current_tank_stops >= tank_stops_to_win:
-		_print_new_message(str("Tank stopped ", tank_stops_to_win, " times in a row! Victory!"))
+		_set_message(str("Tank stopped ", tank_stops_to_win, " times in a row! Victory!"))
 		_on_game_over()
 
 
@@ -122,17 +127,18 @@ func _on_tank_moved():
 
 
 func _on_tank_escaped():
-	_print_new_message("Tank escaped! You failed!")
+	_set_message("Tank escaped! You failed!")
 	_on_game_over()
 
 
 func _on_tank_damaged(remaining_hp: int):
 	if remaining_hp <= 0:
-		_print_new_message("Tank is destroyed! Victory!")
+		_set_message("Tank is destroyed! Victory!")
 		_on_game_over()
 
 
 func _try_light_up_cells(center: Coordinates):
+	_add_message("Field is lighted up!")
 	_field.light_up_cells(center, light_up_radius)
 
 
@@ -144,8 +150,19 @@ func _try_move_tank():
 	_tank.try_move()
 
 
-func _print_new_message(message: String):
+func _reset_message():
+	_label.text = ""
+
+
+func _set_message(message: String):
 	_label.text = message
+
+
+func _add_message(message: String):
+	if _label.text == "":
+		_set_message(message)
+	else:
+		_label.text += "\n" + message
 
 
 func _on_game_over():

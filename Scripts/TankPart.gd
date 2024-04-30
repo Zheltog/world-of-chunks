@@ -38,12 +38,12 @@ func try_shoot():
 	
 	if is_hit:
 		hp -= 1
-		EventBus.new_message.emit(str("Got it! Remaining ", hp, " of ", part_name))
+		EventBus.add_message.emit(str("Got it! Remaining ", hp, " of ", part_name, "!"))
 		parent.on_hit(stop_probability_modifier)
 		if hp == 0:
 			color = Color.DIM_GRAY
 	else:
-		EventBus.new_message.emit("Missed!")
+		EventBus.add_message.emit("Missed!")
 
 
 func _process_coordinates(_color: Color, _occupant: TankPart):

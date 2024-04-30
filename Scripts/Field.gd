@@ -22,10 +22,11 @@ func _process(delta):
 func init(cells_num_hor: int, cells_num_ver: int):
 	_cells_num_hor = cells_num_hor
 	_cells_num_ver = cells_num_ver
-	var screen_width = get_viewport_rect().size.x
-	var screen_height = get_viewport_rect().size.y
+	var screen_sizes = get_screen_sizes()
+	var screen_width = screen_sizes.x
+	var screen_height = screen_sizes.y
 	_center = Vector2(screen_width / 2, screen_height / 2)
-	_cell_size = min(screen_width / (_cells_num_hor + 2), screen_height / (_cells_num_ver + 2))
+	_cell_size = min(screen_width / (_cells_num_hor + 3), screen_height / (_cells_num_ver + 4))
 	_init_cells()
 
 
@@ -35,6 +36,10 @@ func get_center() -> Vector2:
 
 func get_cell_size() -> int:
 	return _cell_size
+
+
+func get_screen_sizes() -> Vector2:
+	return get_viewport_rect().size
 
 
 func light_up_cells(center: Coordinates, light_up_radius: int):

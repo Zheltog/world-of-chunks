@@ -13,6 +13,7 @@ var _field: Field
 var _rocket_button: TextureButton
 var _gun_button: TextureButton
 var _new_button: TextureButton
+var _close_button: TextureButton
 var _cell_click_type: CellClickType
 var _tank: Tank
 var _label: Label
@@ -47,23 +48,26 @@ func _ready():
 
 func _init_buttons():
 	var cell_size: int = _field.get_cell_size()
+	var button_size: int = cell_size * 1.5
 	var center: Vector2 = _field.get_center()
+	var screen_sizes: Vector2 = _field.get_screen_sizes()
 	
+	_close_button = get_node("CloseButton")
 	_rocket_button = get_node("RocketButton")
 	_gun_button = get_node("GunButton")
 	_new_button = get_node("NewButton")
 	_new_button.hide()
 	
-	var new_init_size_x = _new_button.texture_normal.get_width()
-	var new_init_size_y = _new_button.texture_normal.get_height()
-	var rocket_init_size_x = _rocket_button.texture_normal.get_width()
-	var rocket_init_size_y = _rocket_button.texture_normal.get_height()
-	var gun_init_size_x = _gun_button.texture_normal.get_width()
-	var gun_init_size_y = _gun_button.texture_normal.get_height()
+	var button_size_vector = Vector2(button_size, button_size)
+	_close_button.size = button_size_vector
+	_new_button.size = button_size_vector
+	_rocket_button.size = button_size_vector
+	_gun_button.size = button_size_vector
 	
-	_new_button.scale = Vector2(cell_size / _new_button.size.x, cell_size / _new_button.size.x)
-	_rocket_button.scale = Vector2(cell_size / _rocket_button.size.x, cell_size / _rocket_button.size.y)
-	_gun_button.scale = Vector2(cell_size / _gun_button.size.x, cell_size / _gun_button.size.x)
+	_close_button.position = Vector2(screen_sizes.x - button_size - cell_size / 4, cell_size / 4)
+	_new_button.position = Vector2(center.x - button_size / 2, screen_sizes.y - button_size - cell_size / 4)
+	_rocket_button.position = Vector2(center.x - button_size - cell_size / 8, screen_sizes.y - button_size - cell_size / 4)
+	_gun_button.position = Vector2(center.x + cell_size / 8, screen_sizes.y - button_size - cell_size / 4)
 
 
 func _process(delta):

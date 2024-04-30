@@ -38,17 +38,8 @@ horizontal_alignment = 1
 
 [node name="NewButton" type="TextureButton" parent="."]
 texture_filter = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -36.0
-offset_top = -80.0
-offset_right = 36.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 72.0
+offset_bottom = 72.0
 texture_normal = ExtResource("3_w62oi")
 texture_pressed = ExtResource("3_w62oi")
 texture_hover = ExtResource("3_w62oi")
@@ -58,17 +49,8 @@ stretch_mode = 0
 
 [node name="RocketButton" type="TextureButton" parent="."]
 texture_filter = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -76.0
-offset_top = -80.0
-offset_right = -4.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 72.0
+offset_bottom = 72.0
 texture_normal = ExtResource("3_pmm6o")
 texture_pressed = ExtResource("3_pmm6o")
 texture_hover = ExtResource("3_pmm6o")
@@ -78,17 +60,8 @@ stretch_mode = 0
 
 [node name="GunButton" type="TextureButton" parent="."]
 texture_filter = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = 4.0
-offset_top = -80.0
-offset_right = 76.0
-offset_bottom = -8.0
-grow_horizontal = 2
-grow_vertical = 0
+offset_right = 72.0
+offset_bottom = 72.0
 texture_normal = ExtResource("4_h4lyl")
 texture_pressed = ExtResource("4_h4lyl")
 texture_hover = ExtResource("4_h4lyl")
@@ -98,14 +71,8 @@ stretch_mode = 0
 
 [node name="CloseButton" type="TextureButton" parent="."]
 texture_filter = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -80.0
-offset_top = 8.0
-offset_right = -8.0
-offset_bottom = 80.0
-grow_horizontal = 0
+offset_right = 72.0
+offset_bottom = 72.0
 texture_normal = ExtResource("3_1juwg")
 texture_pressed = ExtResource("3_1juwg")
 texture_hover = ExtResource("3_1juwg")

@@ -63,7 +63,7 @@ func _move(distance: int):
 	_body.release_cells()
 	_tower.release_cells()
 	
-	base_coordinates.move(-1, 0)
+	base_coordinates.move(distance, 0)
 	if base_coordinates.x < 0:
 		EventBus.tank_escaped.emit()
 	

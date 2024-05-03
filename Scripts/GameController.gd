@@ -220,4 +220,4 @@ func _on_new_button_pressed():
 
 
 func _on_question_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/backstory.tscn")
+	get_tree().change_scene_to_file("res://Scenes/tips.tscn")

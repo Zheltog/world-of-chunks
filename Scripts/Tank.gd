@@ -47,6 +47,10 @@ func on_hit(stop_probability_modifier: int):
 	EventBus.tank_damaged.emit(remaining_hp)
 
 
+func total_hp() -> int:
+	return _tower.hp + _body.hp + _wheels.hp
+
+
 func _move(distance: int):
 	if distance == 0:
 		EventBus.add_message.emit(str("Tank stopped (", stop_probability, "%)!"))

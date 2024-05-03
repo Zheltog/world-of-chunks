@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://ljgf5hu4xpwm"]
+
+[ext_resource type="Script" path="res://Scripts/InfoController.gd" id="1_cas4x"]
+[ext_resource type="Texture2D" uid="uid://bt4gldwek16df" path="res://Sprites/back.png" id="1_ldwse"]
+
+[node name="Base" type="CanvasLayer"]
+script = ExtResource("1_cas4x")
+
+[node name="BaseRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_right = 72.0
+offset_bottom = 72.0
+texture_normal = ExtResource("1_ldwse")
+texture_pressed = ExtResource("1_ldwse")
+texture_hover = ExtResource("1_ldwse")
+texture_disabled = ExtResource("1_ldwse")
+texture_focused = ExtResource("1_ldwse")
+stretch_mode = 0
+
+[node name="TitleLabel" type="Label" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -194.0
+offset_top = 36.0
+offset_right = 194.0
+offset_bottom = 108.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "world of chunks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TipsLabel" type="Label" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -604.0
+offset_top = -180.0
+offset_right = 604.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 36
+text = "The headquarters reports that the Millennium Tank appeared on the radar that night. The machine is moving quickly, and there is no doubt that general Stool Backless himself is among the crew, which means that inaction will definitely turn into a disaster. In the turmoil and bureaucratic confusion, soldier Dulov is entrusted with resolving the issue. The goal is to hit the Millennium Tank while it is within range. The situation is significantly complicated by the almost zero visibility of the scene. Fortunately, the Millennium Tank has a noticeable flaw - the machine often stalls..."
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="VersionLabel" type="Label" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -97.0
+offset_right = -36.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 42
+text = "ver. 1.0"
+horizontal_alignment = 2
+
+[node name="AuthorLabel" type="Label" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -97.0
+offset_right = 207.0
+offset_bottom = -36.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 42
+text = "by belog"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

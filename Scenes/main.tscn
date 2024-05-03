@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://kdlda4v00uqb"]
+[gd_scene load_steps=10 format=3 uid="uid://kdlda4v00uqb"]
 
 [ext_resource type="Script" path="res://Scripts/Field.gd" id="1_g2pcm"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_t2hj8"]
@@ -6,6 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://qiwtdbxgdtp1" path="res://Sprites/eyes.png" id="3_pmm6o"]
 [ext_resource type="Texture2D" uid="uid://bytct43d0spi1" path="res://Sprites/new.png" id="3_w62oi"]
 [ext_resource type="Texture2D" uid="uid://bwmu551bbtvy8" path="res://Sprites/fist.png" id="4_h4lyl"]
+[ext_resource type="Texture2D" uid="uid://ccl4igife3eex" path="res://Sprites/question.png" id="7_fh0ra"]
+[ext_resource type="Texture2D" uid="uid://ltgst43kwxj" path="res://Sprites/stop.png" id="7_w2sry"]
+[ext_resource type="Texture2D" uid="uid://cyutcibhsca1e" path="res://Sprites/hp.png" id="8_eptvv"]
 
 [node name="Base" type="CanvasLayer"]
 script = ExtResource("1_t2hj8")
@@ -22,7 +25,7 @@ grow_vertical = 2
 [node name="Field" type="Node2D" parent="."]
 script = ExtResource("1_g2pcm")
 
-[node name="Label" type="Label" parent="."]
+[node name="MainLabel" type="Label" parent="."]
 self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 5
 anchor_left = 0.5
@@ -80,7 +83,46 @@ texture_disabled = ExtResource("3_1juwg")
 texture_focused = ExtResource("3_1juwg")
 stretch_mode = 0
 
+[node name="QuestionButton" type="TextureButton" parent="."]
+texture_filter = 1
+offset_right = 72.0
+offset_bottom = 72.0
+texture_normal = ExtResource("7_fh0ra")
+texture_pressed = ExtResource("7_fh0ra")
+texture_hover = ExtResource("7_fh0ra")
+texture_disabled = ExtResource("7_fh0ra")
+texture_focused = ExtResource("7_fh0ra")
+stretch_mode = 0
+
+[node name="StopPic" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("7_w2sry")
+
+[node name="StopLabel" type="Label" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 42
+text = "0%"
+
+[node name="HpPic" type="TextureRect" parent="."]
+texture_filter = 1
+offset_right = 72.0
+offset_bottom = 72.0
+texture = ExtResource("8_eptvv")
+
+[node name="HpLabel" type="Label" parent="."]
+self_modulate = Color(0, 0, 0, 1)
+offset_right = 241.0
+offset_bottom = 61.0
+theme_override_font_sizes/font_size = 42
+text = "0"
+horizontal_alignment = 2
+
 [connection signal="pressed" from="NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="RocketButton" to="." method="_on_rocket_button_pressed"]
 [connection signal="pressed" from="GunButton" to="." method="_on_gun_button_pressed"]
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="pressed" from="QuestionButton" to="." method="_on_question_button_pressed"]

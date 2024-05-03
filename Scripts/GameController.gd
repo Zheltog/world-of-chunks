@@ -21,9 +21,14 @@ var _rocket_button: TextureButton
 var _gun_button: TextureButton
 var _new_button: TextureButton
 var _close_button: TextureButton
+var _question_button: TextureButton
+var _stop_pic: TextureRect
+var _hp_pic: TextureRect
 var _cell_click_type: CellClickType
 var _tank: Tank
-var _label: Label
+var _main_label: Label
+var _stop_label: Label
+var _hp_label: Label
 var _is_game_over: bool = false
 var _current_tank_stops: int = 0
 
@@ -53,9 +58,11 @@ func _ready():
 	_tank.body_hit_probability = body_hit_probability
 	_tank.tower_hit_probability = tower_hit_probability
 	_tank.init()
-	_label = get_node("Label")
 	
 	_init_ui()
+	
+	_stop_label.text = str(tank_initial_stop_probability, "%")
+	_hp_label.text = str(_tank.total_hp())
 	
 	_on_gun_button_pressed()
 	_set_message("Soldier Dulov!\nStop Millennium Tank of general Stool Backless!")
@@ -64,28 +71,45 @@ func _ready():
 func _init_ui():
 	var cell_size: int = _field.get_cell_size()
 	var button_size: int = cell_size * 1.5
+	var button_size_vector = Vector2(button_size, button_size)
 	var center: Vector2 = _field.get_center()
 	var screen_sizes: Vector2 = _field.get_screen_sizes()
 	
+	_question_button = get_node("QuestionButton")
 	_close_button = get_node("CloseButton")
 	_rocket_button = get_node("RocketButton")
 	_gun_button = get_node("GunButton")
 	_new_button = get_node("NewButton")
+	_main_label = get_node("MainLabel")
+	_stop_label = get_node("StopLabel")
+	_hp_label = get_node("HpLabel")
+	_stop_pic = get_node("StopPic")
+	_hp_pic = get_node("HpPic")
+	
 	_new_button.hide()
 	
-	var button_size_vector = Vector2(button_size, button_size)
+	_question_button.size = button_size_vector
 	_close_button.size = button_size_vector
 	_new_button.size = button_size_vector
 	_rocket_button.size = button_size_vector
 	_gun_button.size = button_size_vector
+	_stop_pic.size = button_size_vector
+	_hp_pic.size = button_size_vector
 	
+	_question_button.position = Vector2(cell_size / 4, cell_size / 4)
 	_close_button.position = Vector2(screen_sizes.x - button_size - cell_size / 4, cell_size / 4)
 	_new_button.position = Vector2(center.x - button_size / 2, screen_sizes.y - button_size - cell_size / 4)
 	_rocket_button.position = Vector2(center.x - button_size - cell_size / 8, screen_sizes.y - button_size - cell_size / 4)
 	_gun_button.position = Vector2(center.x + cell_size / 8, screen_sizes.y - button_size - cell_size / 4)
+	_stop_pic.position = Vector2(cell_size / 4, screen_sizes.y - button_size - cell_size / 4)
+	_hp_pic.position = Vector2(screen_sizes.x - button_size - cell_size / 4, screen_sizes.y - button_size - cell_size / 4)
 	
-	_label.position = Vector2(_label.position.x, cell_size / 4)
-	_label.add_theme_font_size_override("font_size", cell_size / 2)
+	_main_label.position = Vector2(_main_label.position.x, cell_size / 4)
+	_main_label.add_theme_font_size_override("font_size", cell_size / 2)
+	_stop_label.position = Vector2(_stop_pic.position.x + button_size + cell_size / 4, _stop_pic.position.y)
+	_stop_label.add_theme_font_size_override("font_size", cell_size)
+	_hp_label.position = Vector2(_hp_pic.position.x - _hp_label.size.x - cell_size / 4, _hp_pic.position.y)
+	_hp_label.add_theme_font_size_override("font_size", cell_size)
 
 
 func _process(delta):
@@ -105,6 +129,8 @@ func _on_cell_clicked(coordinates: Coordinates):
 	elif _cell_click_type == CellClickType.GUN:
 		_try_shoot_cell(coordinates)
 		_try_move_tank()
+	
+	_stop_label.text = str(_tank.stop_probability, "%")
 
 
 func _on_cell_recolored(coordinates: Coordinates, color: Color):
@@ -132,6 +158,7 @@ func _on_tank_escaped():
 
 
 func _on_tank_damaged(remaining_hp: int):
+	_hp_label.text = str(remaining_hp)
 	if remaining_hp <= 0:
 		_set_message("Tank is destroyed! Victory!")
 		_on_game_over()
@@ -151,18 +178,18 @@ func _try_move_tank():
 
 
 func _reset_message():
-	_label.text = ""
+	_main_label.text = ""
 
 
 func _set_message(message: String):
-	_label.text = message
+	_main_label.text = message
 
 
 func _add_message(message: String):
-	if _label.text == "":
+	if _main_label.text == "":
 		_set_message(message)
 	else:
-		_label.text += "\n" + message
+		_main_label.text += "\n" + message
 
 
 func _on_game_over():
@@ -190,3 +217,7 @@ func _on_close_button_pressed():
 
 func _on_new_button_pressed():
 	get_tree().change_scene_to_file("res://Scenes/main.tscn")
+
+
+func _on_question_button_pressed():
+	get_tree().change_scene_to_file("res://Scenes/info.tscn")

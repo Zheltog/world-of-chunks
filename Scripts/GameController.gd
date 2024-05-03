@@ -212,7 +212,7 @@ func _on_gun_button_pressed():
 
 
 func _on_close_button_pressed():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://Scenes/menu.tscn")
 
 
 func _on_new_button_pressed():
@@ -220,4 +220,4 @@ func _on_new_button_pressed():
 
 
 func _on_question_button_pressed():
-	get_tree().change_scene_to_file("res://Scenes/info.tscn")
+	get_tree().change_scene_to_file("res://Scenes/backstory.tscn")

@@ -1,0 +1,178 @@
+[gd_scene load_steps=6 format=3 uid="uid://75uwfafy5eib"]
+
+[ext_resource type="Script" path="res://Scripts/MenuController.gd" id="1_45y2p"]
+[ext_resource type="Texture2D" uid="uid://b7s8862fsb2a1" path="res://Sprites/close.png" id="1_e0drc"]
+[ext_resource type="Texture2D" uid="uid://iahdb34ik3cx" path="res://Sprites/play.png" id="2_nim60"]
+[ext_resource type="Texture2D" uid="uid://dsk7m8bof44sg" path="res://Sprites/story.png" id="3_5ekwb"]
+[ext_resource type="Texture2D" uid="uid://ccl4igife3eex" path="res://Sprites/question.png" id="4_1gc8t"]
+
+[node name="Base" type="CanvasLayer"]
+script = ExtResource("1_45y2p")
+
+[node name="BaseRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.25098, 0.376471, 1)
+
+[node name="TitleLabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -194.0
+offset_top = 36.0
+offset_right = 194.0
+offset_bottom = 108.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "world of chunks"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VersionLabel" type="Label" parent="."]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -236.0
+offset_top = -97.0
+offset_right = -36.0
+offset_bottom = -36.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 42
+text = "ver. 1.0"
+horizontal_alignment = 2
+
+[node name="AuthorLabel" type="Label" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 36.0
+offset_top = -97.0
+offset_right = 207.0
+offset_bottom = -36.0
+grow_vertical = 0
+theme_override_font_sizes/font_size = 42
+text = "by belog"
+
+[node name="PlayButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -547.0
+offset_top = 193.0
+offset_right = -441.0
+offset_bottom = 299.0
+grow_horizontal = 2
+texture_normal = ExtResource("2_nim60")
+texture_pressed = ExtResource("2_nim60")
+texture_hover = ExtResource("2_nim60")
+texture_disabled = ExtResource("2_nim60")
+texture_focused = ExtResource("2_nim60")
+stretch_mode = 0
+
+[node name="PlayLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.0
+offset_top = -150.0
+offset_right = -253.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "play"
+
+[node name="StoryButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -547.0
+offset_top = 316.0
+offset_right = -441.0
+offset_bottom = 422.0
+grow_horizontal = 2
+texture_normal = ExtResource("3_5ekwb")
+texture_pressed = ExtResource("3_5ekwb")
+texture_hover = ExtResource("3_5ekwb")
+texture_disabled = ExtResource("3_5ekwb")
+texture_focused = ExtResource("3_5ekwb")
+stretch_mode = 0
+
+[node name="StoryLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.0
+offset_top = -27.0
+offset_right = -124.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "backstory"
+
+[node name="QuestionButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -547.0
+offset_top = 439.0
+offset_right = -441.0
+offset_bottom = 545.0
+grow_horizontal = 2
+texture_normal = ExtResource("4_1gc8t")
+texture_pressed = ExtResource("4_1gc8t")
+texture_hover = ExtResource("4_1gc8t")
+texture_disabled = ExtResource("4_1gc8t")
+texture_focused = ExtResource("4_1gc8t")
+stretch_mode = 0
+
+[node name="QuestionLabel" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -424.0
+offset_top = 96.0
+offset_right = -124.0
+offset_bottom = 157.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 42
+text = "how to play"
+
+[node name="CloseButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -123.0
+offset_top = 17.0
+offset_right = -17.0
+offset_bottom = 123.0
+grow_horizontal = 0
+texture_normal = ExtResource("1_e0drc")
+texture_pressed = ExtResource("1_e0drc")
+texture_hover = ExtResource("1_e0drc")
+texture_disabled = ExtResource("1_e0drc")
+texture_focused = ExtResource("1_e0drc")
+stretch_mode = 0
+
+[connection signal="pressed" from="PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="StoryButton" to="." method="_on_story_button_pressed"]
+[connection signal="pressed" from="QuestionButton" to="." method="_on_question_button_pressed"]
+[connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

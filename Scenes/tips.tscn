@@ -1,10 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ljgf5hu4xpwm"]
+[gd_scene load_steps=3 format=3 uid="uid://ckew53xwp6wc"]
 
-[ext_resource type="Script" path="res://Scripts/InfoController.gd" id="1_cas4x"]
-[ext_resource type="Texture2D" uid="uid://bt4gldwek16df" path="res://Sprites/back.png" id="1_ldwse"]
+[ext_resource type="Script" path="res://Scripts/TipsController.gd" id="1_ejhw3"]
+[ext_resource type="Texture2D" uid="uid://bt4gldwek16df" path="res://Sprites/back.png" id="2_1lx46"]
 
 [node name="Base" type="CanvasLayer"]
-script = ExtResource("1_cas4x")
+script = ExtResource("1_ejhw3")
 
 [node name="BaseRect" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -12,20 +12,22 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.12549, 0.25098, 0.376471, 1)
 
 [node name="BackButton" type="TextureButton" parent="."]
 texture_filter = 1
-offset_right = 72.0
-offset_bottom = 72.0
-texture_normal = ExtResource("1_ldwse")
-texture_pressed = ExtResource("1_ldwse")
-texture_hover = ExtResource("1_ldwse")
-texture_disabled = ExtResource("1_ldwse")
-texture_focused = ExtResource("1_ldwse")
+offset_left = 17.0
+offset_top = 17.0
+offset_right = 123.0
+offset_bottom = 123.0
+texture_normal = ExtResource("2_1lx46")
+texture_pressed = ExtResource("2_1lx46")
+texture_hover = ExtResource("2_1lx46")
+texture_disabled = ExtResource("2_1lx46")
+texture_focused = ExtResource("2_1lx46")
 stretch_mode = 0
 
 [node name="TitleLabel" type="Label" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -35,12 +37,28 @@ offset_right = 194.0
 offset_bottom = 108.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 50
+text = "how to play"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameTitleLabel" type="Label" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -194.0
+offset_top = -97.0
+offset_right = 194.0
+offset_bottom = -36.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/font_size = 42
 text = "world of chunks"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TipsLabel" type="Label" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -52,13 +70,13 @@ offset_right = 604.0
 offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 36
-text = "The headquarters reports that the Millennium Tank appeared on the radar that night. The machine is moving quickly, and there is no doubt that general Stool Backless himself is among the crew, which means that inaction will definitely turn into a disaster. In the turmoil and bureaucratic confusion, soldier Dulov is entrusted with resolving the issue. The goal is to hit the Millennium Tank while it is within range. The situation is significantly complicated by the almost zero visibility of the scene. Fortunately, the Millennium Tank has a noticeable flaw - the machine often stalls..."
+theme_override_font_sizes/font_size = 32
+text = "Yes."
+horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="VersionLabel" type="Label" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -75,7 +93,6 @@ text = "ver. 1.0"
 horizontal_alignment = 2
 
 [node name="AuthorLabel" type="Label" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0

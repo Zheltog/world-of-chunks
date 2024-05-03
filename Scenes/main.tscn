@@ -21,12 +21,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.12549, 0.25098, 0.376471, 1)
 
 [node name="Field" type="Node2D" parent="."]
 script = ExtResource("1_g2pcm")
 
 [node name="MainLabel" type="Label" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -101,7 +101,6 @@ offset_bottom = 72.0
 texture = ExtResource("7_w2sry")
 
 [node name="StopLabel" type="Label" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 offset_right = 40.0
 offset_bottom = 23.0
 theme_override_font_sizes/font_size = 42
@@ -114,7 +113,6 @@ offset_bottom = 72.0
 texture = ExtResource("8_eptvv")
 
 [node name="HpLabel" type="Label" parent="."]
-self_modulate = Color(0, 0, 0, 1)
 offset_right = 241.0
 offset_bottom = 61.0
 theme_override_font_sizes/font_size = 42

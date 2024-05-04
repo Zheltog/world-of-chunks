@@ -1,2 +1,4 @@
 # world-of-chunks
- War drama game about confrontation of soldier Dulov and his enemy - general Stool Backless
+![Logo](Other/logo.png)
+War drama game about confrontation of soldier Dulov and his enemy - general Stool Backless
+![Screenshot](Other/screenshot.jpg)

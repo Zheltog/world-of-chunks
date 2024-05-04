@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kdlda4v00uqb"]
+[gd_scene load_steps=11 format=3 uid="uid://kdlda4v00uqb"]
 
 [ext_resource type="Script" path="res://Scripts/Field.gd" id="1_g2pcm"]
 [ext_resource type="Script" path="res://Scripts/GameController.gd" id="1_t2hj8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ccl4igife3eex" path="res://Sprites/question.png" id="7_fh0ra"]
 [ext_resource type="Texture2D" uid="uid://ltgst43kwxj" path="res://Sprites/stop.png" id="7_w2sry"]
 [ext_resource type="Texture2D" uid="uid://cyutcibhsca1e" path="res://Sprites/hp.png" id="8_eptvv"]
+[ext_resource type="AudioStream" uid="uid://kv6wagisbegn" path="res://Audio/woc_v1.mp3" id="10_fhc4n"]
 
 [node name="Base" type="CanvasLayer"]
 script = ExtResource("1_t2hj8")
@@ -118,6 +119,10 @@ offset_bottom = 61.0
 theme_override_font_sizes/font_size = 42
 text = "0"
 horizontal_alignment = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_fhc4n")
+autoplay = true
 
 [connection signal="pressed" from="NewButton" to="." method="_on_new_button_pressed"]
 [connection signal="pressed" from="RocketButton" to="." method="_on_rocket_button_pressed"]

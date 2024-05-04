@@ -77,17 +77,14 @@ texture_focused = ExtResource("2_nim60")
 stretch_mode = 0
 
 [node name="PlayLabel" type="Label" parent="."]
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -424.0
-offset_top = -150.0
+offset_top = 210.0
 offset_right = -253.0
-offset_bottom = -89.0
+offset_bottom = 271.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 42
 text = "play"
 
@@ -109,17 +106,14 @@ texture_focused = ExtResource("3_5ekwb")
 stretch_mode = 0
 
 [node name="StoryLabel" type="Label" parent="."]
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -424.0
-offset_top = -27.0
+offset_top = 333.0
 offset_right = -124.0
-offset_bottom = 34.0
+offset_bottom = 394.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 42
 text = "backstory"
 
@@ -141,17 +135,14 @@ texture_focused = ExtResource("4_1gc8t")
 stretch_mode = 0
 
 [node name="QuestionLabel" type="Label" parent="."]
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -424.0
-offset_top = 96.0
+offset_top = 456.0
 offset_right = -124.0
-offset_bottom = 157.0
+offset_bottom = 517.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_font_sizes/font_size = 42
 text = "how to play"
 
